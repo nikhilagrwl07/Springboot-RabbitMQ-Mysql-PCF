@@ -3,6 +3,7 @@ package com.example.cftest.cftest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -29,9 +30,12 @@ public class BaseController {
         return ResponseEntity.ok().body(application);
     }
 
-    @GetMapping(value = "/testRabbitTopic")
-    public void testRabbitTopic() {
-        messageProducer.sendFirstMessage();
-        messageProducer.sendSecondMessage();
+    @GetMapping(value = "/rabbitmq/producer")
+    public void testRabbitTopic(@RequestParam("empName") String empName, @RequestParam("empId") String empId) {
+
+        EmployeeMessage emp=new EmployeeMessage(empId, empName);
+
+        messageProducer.sendFirstMessage(emp);
+        messageProducer.sendSecondMessage(emp);
     }
 }

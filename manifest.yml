@@ -7,4 +7,8 @@ services:
   - rabbitmq
 env:
   spring_jpa_hibernate_ddl-auto: update
+  rabbitmq.exchange: directExchange
+  rabbitmq.firstroutingkey: first
+  rabbitmq.secondroutingkey: second
+
 #  SPRING_PROFILES_ACTIVE: cloud
