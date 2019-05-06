@@ -1,0 +1,10 @@
+name: SpringBootRabbitmqPCF
+path: target/cftest-0.0.1-SNAPSHOT.jar
+buildpack: https://github.com/cloudfoundry/java-buildpack.git
+memory: 1G
+services:
+  - mysql
+  - rabbitmq
+env:
+  spring_jpa_hibernate_ddl-auto: update
+#  SPRING_PROFILES_ACTIVE: cloud
